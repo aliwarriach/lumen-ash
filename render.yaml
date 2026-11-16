@@ -1,0 +1,28 @@
+# Render Blueprint: one free web service running the FastAPI backend.
+services:
+  - type: web
+    name: lumen-backend
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      # Set the values below in the Render dashboard; they are never committed.
+      - key: SUPABASE_URL
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_BACKUP_API_KEY
+        sync: false
+      - key: COMMUNITY_MODERATOR_EMAILS
+        sync: false
+      - key: SENTRY_DSN
+        sync: false

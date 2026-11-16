@@ -1,0 +1,28 @@
+# Per-commit snapshots made while git was unavailable (see ROADMAP.md, section 6)
+.phase-snapshots/
+
+# Secrets
+.env
+.env.*
+!.env.example
+credentials.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Database backups
+*.dump
+*.sql.gz
+
+# Downloaded dictionary dumps (1 GB+)
+*.jsonl

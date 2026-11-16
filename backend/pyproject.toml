@@ -1,0 +1,53 @@
+[project]
+name = "lumen-backend"
+version = "0.1.0"
+description = "Backend for the German A1 study companion"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic-settings",
+    "sqlalchemy[asyncio]",
+    "psycopg[binary]",
+    "alembic",
+    "pyjwt[crypto]",
+    "httpx",
+    "certifi",  # root certificates for the Supabase key fetch (app/core/auth.py)
+    "sentry-sdk[fastapi]",
+    "fsrs>=6.3.2",
+    "tzdata>=2026.6",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "ASYNC"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = ["migrations/"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+warn_return_any = false
